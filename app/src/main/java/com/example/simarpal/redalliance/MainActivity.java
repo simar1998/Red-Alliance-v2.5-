@@ -45,6 +45,38 @@ public class MainActivity extends ActionBarActivity {
     String scoutNameString = "";//Stores the value of the user input of the scout number
     String myFileName = teamNumberDouble + " " + matchNumberDouble;
 
+    //Pit scouting variables
+
+    //Strings
+    String pitTeamName = "";
+    String pitScoutName = "";
+    String pitSpeed = "";
+    String pitDriveType = "";
+    String pitOrientation = "";
+    String pitAutonomous = "";
+    String pitStackHeight = "";
+    String pitContainerHeight = "";
+    String pitLitterInContainerHow = "";
+
+    //Booleans
+    Boolean pitStrafe = false;
+    Boolean pitOverPlatform = false;
+    Boolean pitTotesPick = false;
+    Boolean pitPushTotes = false;
+    Boolean pitRightTotes = false;
+    Boolean pitLandfillTotes = false;
+    Boolean pitHPfeed = false;
+    Boolean pitLitterInContainer = false;
+    Boolean pitRightContainers = false;
+    Boolean pitHerdLitter = false;
+    Boolean pitThrowLitter = false;
+    Boolean pitLitterLandfill = false;
+    Boolean coopOneThree = false;
+    Boolean coopThreeOne = false;
+    Boolean pitSet = false;
+    Boolean pitStack = false;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +120,21 @@ public class MainActivity extends ActionBarActivity {
 
         //Button objects
         final Button submitButton = (Button) findViewById(R.id.submitButton);
+
+        //Pit Scouting objects
+
+        final EditText pitTeamNumberText = (EditText) findViewById(R.id.teamNumber);
+        final EditText pitScoutNameText = (EditText) findViewById(R.id.scoutName);
+        final  EditText pitSpeedText = (EditText) findViewById(R.id.speedTextPIT);
+        final EditText pitDriveTypeText = (EditText) findViewById(R.id.driveType);
+        final EditText pitOrientationText = (EditText) findViewById(R.id.orientationPIT);
+        final EditText pitAutonText = (EditText) findViewById(R.id.autonPIT);
+        final EditText pitStackheightText = (EditText) findViewById(R.id.tallStackPIT);
+        final EditText pitContainerHightText = (EditText) findViewById(R.id.containerHeightPIT);
+        final EditText pitLitterContainerHowText = (EditText) findViewById(R.id.litterHowPIT);
+
+
+
 
         cylinderMoveNP.setMaxValue(CYLINDERS_MOVED_MAX);
         totesMovedNP.setMaxValue(TOTES_MOVED_MAX);
@@ -206,6 +253,7 @@ public class MainActivity extends ActionBarActivity {
 
         if (!outDir.isDirectory()) {
             throw new IOException("unable to create directory ");
+
         }
         if (!teamNumberDouble.isEmpty() && !matchNumberDouble.isEmpty()) {
             myFileName = "Team " + teamNumberDouble.toString() + " Match " + matchNumberDouble;
@@ -236,17 +284,7 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
-            /* 
-            File outPutFile = new File(outDir, fileName);
-            writer = new PrintWriter(new FileWriter(outPutFile));
-            writer.write(data);
-            MessageBox("File saved");
-            writer.close();
-        } catch (IOException e) {
-            throw new IOException(" unable to write to storage ");
-        }
-    }
-    */
+
 
 
     // Toast never used

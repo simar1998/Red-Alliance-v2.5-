@@ -34,4 +34,10 @@
         <item>H</item>
         <item>Other</item>
     </array>
+    <array name="container_take">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Auton</item>
+        <item>Telle</item>
+    </array>
 </resources>
