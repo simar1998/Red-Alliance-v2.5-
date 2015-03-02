@@ -3,4 +3,40 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="match_number_string">Match Number</string>
+    <string name="team_number_string">Team Number     </string>
+    <string name="scout_name_string">Scout Name</string>
+    <string name="number_of_cylinders_moved_string">Number of \n cylinders \n moved</string>
+    <string name="number_of_totes_moved_string">Number of \n totes \n moved</string>
+    <string name="number_of_cylinders_ofStep_variable">Number Of \n Cylinders \n off step</string>
+    <string name="long_string">Long</string>
+    <string name="wide_String">Wide</string>
+    <string name="totes_landfill_string">Totes from landfill</string>
+    <string name="upside_down_totes_string">Upside down totes</string>
+    <string name="bot_in_zone_string">Bot in zone</string>
+    <string name="tote_set_string">Tote set</string>
+    <string name="totes_off_set_string">Totes off \n step</string>
+    <string name="noodles_in_cylinder_string">Noodles in \n cylinder</string>
+    <string name="noodles_in_opponent_zone_string">Noodles in \n opponent \n zone</string>
+    <string name="herd_litter_string">Herd Litter</string>
+    <string name="totes_from_hp_string">Totes from HP</string>
+    <string name="number_over_platform_string">Number over platform</string>
+    <string name="submit_button_string">Submit</string>
+
+    <!-- Below are the string resources of the pit_scouting_layout.xml file -->
+
+    <array name="drive_train_araay">
+        <item>Omni</item>
+        <item>Mechanum</item>
+        <item>Traction</item>
+        <item>H</item>
+        <item>Other</item>
+    </array>
+    <array name="container_take">
+        <item>Yes</item>
+        <item>No</item>
+        <item>Auton</item>
+        <item>Telle</item>
+    </array>
 </resources>
