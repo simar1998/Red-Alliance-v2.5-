@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.solidworks.redalliancev26.pit_scouting_activity">
+    <item android:id="@+id/action_scouting" android:title="@string/scouting_string"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+</menu>
