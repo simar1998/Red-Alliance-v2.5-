@@ -23,6 +23,7 @@
     <string name="totes_from_hp_string">Totes from HP</string>
     <string name="number_over_platform_string">Number over platform</string>
     <string name="submit_button_string">Submit</string>
+    <string name="pit_scout_app">Pit Scout</string>
 
     <!-- Below are the string resources of the pit_scouting_layout.xml file -->
 

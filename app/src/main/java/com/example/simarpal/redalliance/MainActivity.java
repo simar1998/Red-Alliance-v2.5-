@@ -83,8 +83,10 @@ public class MainActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //setContentView(R.layout.pit_scouting);
 
-        final int MIN_VALUE = 0;//This variable stores the min value of 0
+        //Button objects
+        final Button submitButton = (Button) findViewById(R.id.submitButton);        final int MIN_VALUE = 0;//This variable stores the min value of 0
         final int CYLINDERS_MOVED_MAX = 3;//This variable stores the max of the corresponding value
         final int TOTES_MOVED_MAX = 3;//This variable stores the max of the corresponding value
         final int CYLINDERS_OFF_STEP_MAX = 4;//This variable stores the max of the corresponding value
@@ -120,49 +122,8 @@ public class MainActivity extends ActionBarActivity {
         //Switch object
         final Switch herdLitterSwitch = (Switch) findViewById(R.id.herdLitterOptionSwitch);
 
-        //Button objects
-        final Button submitButton = (Button) findViewById(R.id.submitButton);
 
-        //Pit Scouting objects
 
-        //EDIT TEXT OBJECTS
-        final EditText pitTeamNumberText = (EditText) findViewById(R.id.teamNumber);
-        final EditText pitScoutNameText = (EditText) findViewById(R.id.scoutName);
-        final  EditText pitSpeedText = (EditText) findViewById(R.id.speedTextPIT);
-        final EditText pitDriveTypeText = (EditText) findViewById(R.id.driveType);
-        final EditText pitOrientationText = (EditText) findViewById(R.id.orientationPIT);
-        final EditText pitAutonText = (EditText) findViewById(R.id.autonPIT);
-        final EditText pitStackHeightText = (EditText) findViewById(R.id.tallStackPIT);
-        final EditText pitContainerHeightText = (EditText) findViewById(R.id.containerHeightPIT);
-        final EditText pitLitterContainerHowText = (EditText) findViewById(R.id.litterHowPIT);
-
-        //Switch objects
-        final Switch pitTotesPickBool= (Switch) findViewById(R.id.totesPickPIT);
-        final Switch pitPushTotesBool = (Switch) findViewById(R.id.pushTotesPIT);
-        final Switch pitRightToteBool = (Switch)findViewById(R.id.rightTotesPIT);
-        final Switch pitLandfillTotesBool = (Switch) findViewById(R.id.landfillTotesPIT);
-        final Switch pitHPFeedBool = (Switch) findViewById(R.id.hpFeedPIT);
-        final Switch pitLitterBool= (Switch) findViewById(R.id.litterPIT);
-        final Switch pitRightContainerBool = (Switch) findViewById(R.id.rightContainersPIT);
-        final Switch pitHerdLitterBool =(Switch) findViewById(R.id.herdLitterPIT);
-        final Switch pitThrowLitterBool = (Switch) findViewById(R.id.throwLitterPIT);
-        final Switch pitLitterLandfillBool = (Switch) findViewById(R.id.litterLandfillPIT);
-        final Switch pitOneOnThreeBool = (Switch) findViewById(R.id.oneToteOnThreePIT);
-        final Switch pitThreeOnOneBool = (Switch) findViewById(R.id.threeOnOnePit);
-
-        //Toggle button
-        final ToggleButton pitStrafeToggleBool = (ToggleButton) findViewById(R.id.strafeTogglePIT);
-        final ToggleButton pitOverPlatformBool = (ToggleButton) findViewById(R.id.overPlatformPIT);
-
-        //Checkbox objects
-        final CheckBox pitSetBool = (CheckBox) findViewById(R.id.setCheckBoxPIT);
-        final CheckBox pitStackBool = (CheckBox) findViewById(R.id.stackCheckBoxPIT);
-
-        //Spinner objects
-        final Spinner pitContainerSpinner = (Spinner) findViewById(R.id.containerSpinnerPIT);
-
-        //pit Button object
-        final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
 
         cylinderMoveNP.setMaxValue(CYLINDERS_MOVED_MAX);
         totesMovedNP.setMaxValue(TOTES_MOVED_MAX);
@@ -179,11 +140,10 @@ public class MainActivity extends ActionBarActivity {
         noodlesCylinderNp.setMinValue(MIN_VALUE);
 
 
-        ArrayAdapter<CharSequence> containerAdapter = ArrayAdapter.createFromResource(this , R.array.container_take ,
+        ArrayAdapter<CharSequence> containerAdapter = ArrayAdapter.createFromResource(this, R.array.container_take,
                 android.R.layout.simple_spinner_item);
         containerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        pitContainerSpinner.setAdapter(containerAdapter);
-
+        // pitContainerSpinner.setAdapter(containerAdapter);
 
 
         View.OnClickListener listenerScout = new View.OnClickListener() {
@@ -250,61 +210,10 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         submitButton.setOnClickListener(listenerScout);
-
-
-        View.OnClickListener listenerPitScout = new View.OnClickListener() {
-            public void onClick(View v){
-
-                pitTeamName = pitTeamNumberText.getText().toString();
-                pitScoutName = pitScoutNameText.getText().toString();
-                pitSpeed = pitSpeedText.getText().toString();
-                pitDriveType = pitDriveTypeText.getText().toString();
-                pitOrientation = pitOrientationText.getText().toString();
-                pitAutonomous = pitAutonText.getText().toString();
-                pitStackHeight = pitStackHeightText.getText().toString();
-                pitContainerHeight = pitContainerHeightText.getText().toString();
-                pitLitterInContainerHowString = pitLitterContainerHowText.getText().toString();
-
-                if(pitStrafeToggleBool.isChecked()){
-                     pitStrafe = true;
-               }
-                else pitStrafe = false;
-
-                if(pitOverPlatformBool.isChecked())
-                {
-                    pitOverPlatform = true;
-                }
-                else pitOverPlatform = false;
-
-              switchIfStatement(pitTotesPickBool , pitTotesPick);
-                switchIfStatement(pitPushTotesBool , pitPushTotes);
-                switchIfStatement(pitRightToteBool, pitRightTotes);
-                switchIfStatement(pitLandfillTotesBool,pitLandfillTotes);
-                switchIfStatement(pitHPFeedBool,pitHPfeed);
-                switchIfStatement(pitLitterBool , pitLitterInContainer);
-                switchIfStatement(pitRightContainerBool , pitRightContainers);
-                switchIfStatement(pitHerdLitterBool , pitHerdLitter);
-                switchIfStatement(pitThrowLitterBool,pitThrowLitter);
-                switchIfStatement(pitLitterLandfillBool,pitLitterLandfill);
-                switchIfStatement(pitOneOnThreeBool,coopOneThree);
-                switchIfStatement(pitThreeOnOneBool,coopThreeOne);
-                if(pitSetBool.isChecked())
-                {
-                    pitSet = true;
-                }else pitSet = false;
-                if(pitStackBool.isChecked())
-                {
-                    pitStack = true;
-                }else pitStack = false;
-                try {
-                    writerToFilePit();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        submitButton.setOnClickListener(listenerPitScout);
     }
+
+
+
 
     public void switchIfStatement(Switch s, Boolean b)
     {
@@ -334,8 +243,102 @@ public class MainActivity extends ActionBarActivity {
         }
         if(id == R.id.action_pit_scouting)
         {
-            setContentView(R.layout.pit_scouting);
+            //setContentView(R.layout.pit_scouting);
+            //Pit Scouting objects
+
+            //EDIT TEXT OBJECTS
+            final EditText pitTeamNumberText = (EditText) findViewById(R.id.teamNumber);
+            final EditText pitScoutNameText = (EditText) findViewById(R.id.scoutName);
+            final  EditText pitSpeedText = (EditText) findViewById(R.id.speedTextPIT);
+            final EditText pitDriveTypeText = (EditText) findViewById(R.id.driveType);
+            final EditText pitOrientationText = (EditText) findViewById(R.id.orientationPIT);
+            final EditText pitAutonText = (EditText) findViewById(R.id.autonPIT);
+            final EditText pitStackHeightText = (EditText) findViewById(R.id.tallStackPIT);
+            final EditText pitContainerHeightText = (EditText) findViewById(R.id.containerHeightPIT);
+            final EditText pitLitterContainerHowText = (EditText) findViewById(R.id.litterHowPIT);
+
+            //Switch objects
+            final Switch pitTotesPickBool= (Switch) findViewById(R.id.totesPickPIT);
+            final Switch pitPushTotesBool = (Switch) findViewById(R.id.pushTotesPIT);
+            final Switch pitRightToteBool = (Switch)findViewById(R.id.rightTotesPIT);
+            final Switch pitLandfillTotesBool = (Switch) findViewById(R.id.landfillTotesPIT);
+            final Switch pitHPFeedBool = (Switch) findViewById(R.id.hpFeedPIT);
+            final Switch pitLitterBool= (Switch) findViewById(R.id.litterPIT);
+            final Switch pitRightContainerBool = (Switch) findViewById(R.id.rightContainersPIT);
+            final Switch pitHerdLitterBool =(Switch) findViewById(R.id.herdLitterPIT);
+            final Switch pitThrowLitterBool = (Switch) findViewById(R.id.throwLitterPIT);
+            final Switch pitLitterLandfillBool = (Switch) findViewById(R.id.litterLandfillPIT);
+            final Switch pitOneOnThreeBool = (Switch) findViewById(R.id.oneToteOnThreePIT);
+            final Switch pitThreeOnOneBool = (Switch) findViewById(R.id.threeOnOnePit);
+
+            //Toggle button
+            final ToggleButton pitStrafeToggleBool = (ToggleButton) findViewById(R.id.strafeTogglePIT);
+            final ToggleButton pitOverPlatformBool = (ToggleButton) findViewById(R.id.overPlatformPIT);
+
+            //Checkbox objects
+            final CheckBox pitSetBool = (CheckBox) findViewById(R.id.setCheckBoxPIT);
+            final CheckBox pitStackBool = (CheckBox) findViewById(R.id.stackCheckBoxPIT);
+
+            //Spinner objects
+            final Spinner pitContainerSpinner = (Spinner) findViewById(R.id.containerSpinnerPIT);
+
+            //pit Button object
+            final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
+
+            View.OnClickListener listenerPitScout = new View.OnClickListener() {
+                public void onClick(View v){
+
+                    pitTeamName = pitTeamNumberText.getText().toString();
+                    pitScoutName = pitScoutNameText.getText().toString();
+                    pitSpeed = pitSpeedText.getText().toString();
+                    pitDriveType = pitDriveTypeText.getText().toString();
+                    pitOrientation = pitOrientationText.getText().toString();
+                    pitAutonomous = pitAutonText.getText().toString();
+                    pitStackHeight = pitStackHeightText.getText().toString();
+                    pitContainerHeight = pitContainerHeightText.getText().toString();
+                    pitLitterInContainerHowString = pitLitterContainerHowText.getText().toString();
+
+                    if(pitStrafeToggleBool.isChecked()){
+                        pitStrafe = true;
+                    }
+                    else pitStrafe = false;
+
+                    if(pitOverPlatformBool.isChecked())
+                    {
+                        pitOverPlatform = true;
+                    }
+                    else pitOverPlatform = false;
+
+                    switchIfStatement(pitTotesPickBool , pitTotesPick);
+                    switchIfStatement(pitPushTotesBool , pitPushTotes);
+                    switchIfStatement(pitRightToteBool, pitRightTotes);
+                    switchIfStatement(pitLandfillTotesBool,pitLandfillTotes);
+                    switchIfStatement(pitHPFeedBool,pitHPfeed);
+                    switchIfStatement(pitLitterBool , pitLitterInContainer);
+                    switchIfStatement(pitRightContainerBool , pitRightContainers);
+                    switchIfStatement(pitHerdLitterBool , pitHerdLitter);
+                    switchIfStatement(pitThrowLitterBool,pitThrowLitter);
+                    switchIfStatement(pitLitterLandfillBool,pitLitterLandfill);
+                    switchIfStatement(pitOneOnThreeBool,coopOneThree);
+                    switchIfStatement(pitThreeOnOneBool,coopThreeOne);
+                    if(pitSetBool.isChecked())
+                    {
+                        pitSet = true;
+                    }else pitSet = false;
+                    if(pitStackBool.isChecked())
+                    {
+                        pitStack = true;
+                    }else pitStack = false;
+                    try {
+                        writerToFilePit();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            pitSubmitButton.setOnClickListener(listenerPitScout);
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -441,4 +444,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+
 }
+
