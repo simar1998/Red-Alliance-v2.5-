@@ -1,6 +1,9 @@
 package com.example.solidworks.redalliancev26;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -38,6 +42,7 @@ public class pit_scouting_activity extends ActionBarActivity {
     String pitContainerHeight = "";
     String pitLitterInContainerHowString = "";
     String pitFileName = "PIT SCOUT TEAM " + pitTeamName;
+    String imageFile;
 
     //Booleans
     Boolean pitStrafe = false;
@@ -59,6 +64,11 @@ public class pit_scouting_activity extends ActionBarActivity {
 
     Intent mainIntent;
    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_TAKE_PHOTO = 1;
+
+    File photoFile;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,14 +115,11 @@ public class pit_scouting_activity extends ActionBarActivity {
         //pit Button object
         final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
         final Button cameraLaunchButton = (Button) findViewById(R.id.launchCameraButton);
+        final Button refreshImage = (Button) findViewById(R.id.refreshButton);
 
-        View.OnClickListener cameraLaunch = new View.OnClickListener()
-        {
-            public void OnClick(View v)
-            {
-                dispatchTakePictureIntent();
-            }
-        };
+        //image view object
+
+
         View.OnClickListener listenerPitScout = new View.OnClickListener() {
             public void onClick(View v){
 
@@ -164,20 +171,70 @@ public class pit_scouting_activity extends ActionBarActivity {
                 }
             }
         };
+        View.OnClickListener cameraLaunch = new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                pitTeamName = pitTeamNumberText.getText().toString();
+                if(!pitTeamName.isEmpty()) {
+
+                    dispatchTakePictureIntent();
+
+                }
+                else MessageBox("Please put team name first");
+            }
+        };
         pitSubmitButton.setOnClickListener(listenerPitScout);
 
 
         cameraLaunchButton.setOnClickListener(cameraLaunch);
+
+
     }
+    private File createImageFile() throws IOException {
+        String imageFileName = "TEAM " + pitTeamName.toString() + " Image";
+        imageFile = "/storage/emulated/0/Red Alliance Images/" + imageFileName  + ".jpg";
+        File root = Environment.getExternalStorageDirectory();
+        File outDir = new File(root.getAbsolutePath() + File.separator + "Red Alliance Images");
+        if (!outDir.isDirectory()) {
+            outDir.mkdir();
+        }
 
+        if (!outDir.isDirectory()) {
+            throw new IOException("unable to create directory ");
 
-    private void dispatchTakePictureIntent() {
+        }
+
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                outDir
+        );
+        return image;
+
+    }
+    public void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                 photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
 
+                }
+                if (photoFile != null) {
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                            Uri.fromFile(photoFile));
+                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                }
+
+            }
+        }
+
+
+    }
 
 
 

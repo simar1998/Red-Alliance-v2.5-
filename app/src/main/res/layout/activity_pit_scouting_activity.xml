@@ -47,7 +47,7 @@
                 android:text="Preffered speed"
                 android:inputType="text"
                 android:id="@+id/textView14"
-                android:layout_alignBottom="@+id/speedTextPIT"
+                android:layout_above="@+id/orientationPIT"
                 android:layout_toEndOf="@+id/speedTextPIT" />
 
             <TextView
@@ -422,25 +422,17 @@
                 android:layout_height="wrap_content"
                 android:text="Submit"
                 android:id="@+id/pitSubmit"
-                android:layout_marginBottom="73dp"
                 android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/rightContainersPIT" />
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:id="@+id/cameraImageView"
-                android:layout_marginTop="20dp"
-                android:layout_below="@+id/threeOnOnePit"
-                android:layout_toStartOf="@+id/textView29" />
+                android:layout_centerHorizontal="true" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CAMERA"
                 android:id="@+id/launchCameraButton"
-                android:layout_alignBottom="@+id/cameraImageView"
-                android:layout_toEndOf="@+id/pitSubmit" />
+                android:layout_below="@+id/threeOnOnePit"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="98dp" />
 
         </RelativeLayout>
     </ScrollView>
