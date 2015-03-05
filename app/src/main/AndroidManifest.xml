@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.solidworks.redalliancev26" >
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
 
     <application
         android:allowBackup="true"
@@ -18,7 +23,7 @@
         </activity>
         <activity
             android:name=".pit_scouting_activity"
-            android:label="@string/title_activity_pit_scouting_activity" >
+            android:label="@string/pit_scout_string" >
         </activity>
     </application>
 

@@ -2,6 +2,7 @@ package com.example.solidworks.redalliancev26;
 
 import android.content.Intent;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -57,12 +58,15 @@ public class pit_scouting_activity extends ActionBarActivity {
     Boolean pitStack = false;
 
     Intent mainIntent;
+   static final int REQUEST_IMAGE_CAPTURE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pit_scouting_activity);
 
         mainIntent = new Intent(this , MainActivity.class);
+
         final EditText pitTeamNumberText = (EditText) findViewById(R.id.teamNumber);
         final EditText pitScoutNameText = (EditText) findViewById(R.id.scoutName);
         final  EditText pitSpeedText = (EditText) findViewById(R.id.speedTextPIT);
@@ -100,7 +104,15 @@ public class pit_scouting_activity extends ActionBarActivity {
 
         //pit Button object
         final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
+        final Button cameraLaunchButton = (Button) findViewById(R.id.launchCameraButton);
 
+        View.OnClickListener cameraLaunch = new View.OnClickListener()
+        {
+            public void OnClick(View v)
+            {
+                dispatchTakePictureIntent();
+            }
+        };
         View.OnClickListener listenerPitScout = new View.OnClickListener() {
             public void onClick(View v){
 
@@ -153,9 +165,18 @@ public class pit_scouting_activity extends ActionBarActivity {
             }
         };
         pitSubmitButton.setOnClickListener(listenerPitScout);
+
+
+        cameraLaunchButton.setOnClickListener(cameraLaunch);
     }
 
 
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
 
 
