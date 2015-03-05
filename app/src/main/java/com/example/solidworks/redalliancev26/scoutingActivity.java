@@ -23,7 +23,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 
 
-public class MainActivity extends ActionBarActivity {
+public class scoutingActivity extends ActionBarActivity {
 
     String teamNumberDouble = "";//Stores the value for the user input of the team Number :INPUT METHOD = EditText
     String matchNumberDouble = "";//Stores the value for the user input of the matchNumber :INPUT METHOD = EditText
@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pitIntent = new Intent(MainActivity.this, pit_scouting_activity.class);
+        pitIntent = new Intent(scoutingActivity.this, pit_scouting_activity.class);
 
 
 
@@ -246,7 +246,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if(id == R.id.action_pit_scouting) {
-            MainActivity.this.startActivity(pitIntent);
+            scoutingActivity.this.startActivity(pitIntent);
         }
         return super.onOptionsItemSelected(item);
     }

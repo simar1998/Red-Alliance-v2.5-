@@ -19,7 +19,8 @@
                 android:id="@+id/teamNumber"
                 android:layout_marginTop="41dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:maxLength="4" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -321,22 +322,14 @@
                 android:layout_below="@+id/litterHowPIT"
                 android:layout_alignParentStart="true" />
 
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/containerSpinnerPIT"
-                android:layout_below="@+id/rightContainersPIT"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="23dp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Litter"
                 android:id="@+id/textView32"
-                android:layout_below="@+id/containerSpinnerPIT"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/rightContainersPIT" />
 
             <TextView
                 android:layout_width="wrap_content"

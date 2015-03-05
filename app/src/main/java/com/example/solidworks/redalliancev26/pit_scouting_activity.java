@@ -1,8 +1,6 @@
 package com.example.solidworks.redalliancev26;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -75,7 +72,7 @@ public class pit_scouting_activity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pit_scouting_activity);
 
-        mainIntent = new Intent(this , MainActivity.class);
+        mainIntent = new Intent(this , scoutingActivity.class);
 
         final EditText pitTeamNumberText = (EditText) findViewById(R.id.teamNumber);
         final EditText pitScoutNameText = (EditText) findViewById(R.id.scoutName);
@@ -110,7 +107,6 @@ public class pit_scouting_activity extends ActionBarActivity {
         final CheckBox pitStackBool = (CheckBox) findViewById(R.id.stackCheckBoxPIT);
 
         //Spinner objects
-        final Spinner pitContainerSpinner = (Spinner) findViewById(R.id.containerSpinnerPIT);
 
         //pit Button object
         final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
