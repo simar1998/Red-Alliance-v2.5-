@@ -115,7 +115,7 @@ public class pit_scouting_activity extends ActionBarActivity {
         //pit Button object
         final Button pitSubmitButton = (Button) findViewById(R.id.pitSubmit);
         final Button cameraLaunchButton = (Button) findViewById(R.id.launchCameraButton);
-        final Button refreshImage = (Button) findViewById(R.id.refreshButton);
+
 
         //image view object
 
@@ -193,7 +193,6 @@ public class pit_scouting_activity extends ActionBarActivity {
     }
     private File createImageFile() throws IOException {
         String imageFileName = "TEAM " + pitTeamName.toString() + " Image";
-        imageFile = "/storage/emulated/0/Red Alliance Images/" + imageFileName  + ".jpg";
         File root = Environment.getExternalStorageDirectory();
         File outDir = new File(root.getAbsolutePath() + File.separator + "Red Alliance Images");
         if (!outDir.isDirectory()) {
@@ -269,12 +268,12 @@ public class pit_scouting_activity extends ActionBarActivity {
     public void MessageBox(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    private void writerToFilePit() throws IOException
-    {
+    private void writerToFilePit() throws IOException {
+        String myFileName = "PIT " + pitTeamName + ".txt";
         File root = Environment.getExternalStorageDirectory();
         File outDir = new File(root.getAbsolutePath() + File.separator + "Red Alliance");
         Writer writer;
-        File outPutFile = new File(outDir, pitFileName);
+        File outPutFile = new File(outDir, myFileName);
         writer = new PrintWriter(new FileWriter(outPutFile));
         if (!outDir.isDirectory()) {
             outDir.mkdir();
@@ -282,38 +281,37 @@ public class pit_scouting_activity extends ActionBarActivity {
 
         if (!outDir.isDirectory()) {
             throw new IOException("unable to create directory ");
+
         }
-        if(!pitTeamName.isEmpty() && !pitScoutName.isEmpty())
-        {
+
+        if (!pitTeamName.isEmpty() && !pitScoutName.isEmpty()) {
             writer.write("Team Number = " + pitTeamName + "\n");
             writer.write("Scout Name = " + pitScoutName + "\n");
-            writer.write("Preferred Speed = " + pitSpeed+ "\n");
-            writer.write("Drive Train = " + pitDriveType+ "\n");
-            writer.write("Orientation = " + pitOrientation+ "\n");
-            writer.write("Autonomous = " + pitAutonomous+ "\n");
-            writer.write("Stack Height = " + pitStackHeight+ "\n");
-            writer.write("Container Height = " + pitContainerHeight+ "\n");
-            writer.write("Litter in container how = " + pitLitterInContainerHowString+ "\n");
-            writer.write("Strafe = " + pitStrafe+ "\n");
+            writer.write("Preferred Speed = " + pitSpeed + "\n");
+            writer.write("Drive Train = " + pitDriveType + "\n");
+            writer.write("Orientation = " + pitOrientation + "\n");
+            writer.write("Autonomous = " + pitAutonomous + "\n");
+            writer.write("Stack Height = " + pitStackHeight + "\n");
+            writer.write("Container Height = " + pitContainerHeight + "\n");
+            writer.write("Litter in container how = " + pitLitterInContainerHowString + "\n");
+            writer.write("Strafe = " + pitStrafe + "\n");
             writer.write("Over Platform = " + pitOverPlatform + "\n");
-            writer.write("Can pick totes up = " + pitTotesPick+ "\n");
-            writer.write("can push totes = " + pitPushTotes+ "\n");
-            writer.write("Can right totes = " + pitRightTotes+ "\n");
-            writer.write("Landfill totes = " + pitLandfillTotes+ "\n");
+            writer.write("Can pick totes up = " + pitTotesPick + "\n");
+            writer.write("can push totes = " + pitPushTotes + "\n");
+            writer.write("Can right totes = " + pitRightTotes + "\n");
+            writer.write("Landfill totes = " + pitLandfillTotes + "\n");
             writer.write("HP FEED = " + pitHPfeed + "\n");
-            writer.write("Can put litter in container = " + pitLitterInContainerHowString+ "\n");
-            writer.write("Can right container = " + pitRightContainers+ "\n");
-            writer.write("Herd litter = " + pitHerdLitter+ "\n");
-            writer.write("Can throw litter = " + pitThrowLitter+ "\n");
-            writer.write("Can litter landfill = " + pitLitterLandfill+ "\n");
-            writer.write("Can put one tote on three = " + coopOneThree+ "\n");
-            writer.write("Can put three totes on one = " + coopThreeOne+ "\n");
-            writer.write("Set = " + pitSet+ "\n");
-            writer.write("Stack = " + pitStack+ "\n");
+            writer.write("Can put litter in container = " + pitLitterInContainerHowString + "\n");
+            writer.write("Can right container = " + pitRightContainers + "\n");
+            writer.write("Herd litter = " + pitHerdLitter + "\n");
+            writer.write("Can throw litter = " + pitThrowLitter + "\n");
+            writer.write("Can litter landfill = " + pitLitterLandfill + "\n");
+            writer.write("Can put one tote on three = " + coopOneThree + "\n");
+            writer.write("Can put three totes on one = " + coopThreeOne + "\n");
+            writer.write("Set = " + pitSet + "\n");
+            writer.write("Stack = " + pitStack + "\n");
             MessageBox("File Saved");
-        }else MessageBox("Please complete form");
-
-
+            writer.close();
+        } else MessageBox("Please complete form");
     }
-
 }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -44,8 +45,9 @@ public class MainActivity extends ActionBarActivity {
     Boolean herdLitterBool;//Stores the value of the herd litter option :INPUT METHOD = Switch
     //Constants
     String scoutNameString = "";//Stores the value of the user input of the scout number
-    String myFileName = teamNumberDouble + " " + matchNumberDouble;
 
+
+    float ratingRobot;
     Intent pitIntent;
 
     @Override
@@ -94,6 +96,8 @@ public class MainActivity extends ActionBarActivity {
         //Switch object
         final Switch herdLitterSwitch = (Switch) findViewById(R.id.herdLitterOptionSwitch);
 
+        final RatingBar robotRating = (RatingBar) findViewById(R.id.ratingBar);
+
 
         cylinderMoveNP.setMaxValue(CYLINDERS_MOVED_MAX);
         totesMovedNP.setMaxValue(TOTES_MOVED_MAX);
@@ -130,6 +134,7 @@ public class MainActivity extends ActionBarActivity {
                 offStepTotesDouble = totesOffStep.getValue();//Update the off step tote
                 noodlesCylinderDouble = noodlesCylinderNp.getValue();//Update the noodles in cylinder
                 noodlesOpponentDouble = noodlesOpponentNp.getValue();//Updates the noodles in opponent
+                ratingRobot = robotRating.getRating();
                 //END OF NUMBER PICKER
 
                 //START OF TOGGLE BUTTONS
@@ -178,6 +183,7 @@ public class MainActivity extends ActionBarActivity {
     private void writerToFileScouting() throws IOException {
 
 
+        String myFileName = "Team " +  teamNumberDouble + " Match " + matchNumberDouble + ".txt";
         File root = Environment.getExternalStorageDirectory();
         File outDir = new File(root.getAbsolutePath() + File.separator + "Red Alliance");
         Writer writer;
@@ -192,7 +198,6 @@ public class MainActivity extends ActionBarActivity {
 
         }
         if (!teamNumberDouble.isEmpty() && !matchNumberDouble.isEmpty()) {
-            myFileName = "Team " + teamNumberDouble.toString() + " Match " + matchNumberDouble;
             writer.write("Team Number = " + teamNumberDouble + "\n");
             writer.write("Match Number = " + matchNumberDouble + "\n");
             writer.write("Scout Name = " + scoutNameString + "\n");
@@ -211,6 +216,7 @@ public class MainActivity extends ActionBarActivity {
             writer.write("Herd Litter = " + herdLitterBool + "\n");
             writer.write("Totes from HP = " + totesHPDouble + "\n");
             writer.write("Number over platform = " + numberOverPlatformDouble + "\n");
+            writer.write("Rating = " + ratingRobot);
             writer.close();
             MessageBox("File saved");
         }

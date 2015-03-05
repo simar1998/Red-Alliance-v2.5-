@@ -41,4 +41,5 @@
         <item>Auton</item>
         <item>Telle</item>
     </array>
+    <string name="title_activity_view">View</string>
 </resources>
